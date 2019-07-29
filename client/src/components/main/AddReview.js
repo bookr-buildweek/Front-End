@@ -14,16 +14,13 @@ const Wrap = styled.div`
 
 `
 
-function AddReview({ history, match, tempItem }) {
+function AddReview({ history, match }) {
   const [review, setReview] = useState({name: '', review: ''});
   const id = match.params.id;
 
   const [displayBook, setDisplayBook] = useState(null);
 
   useEffect(() => {
-    if (id === '0') {
-      setDisplayBook(tempItem)
-    } else {
     axios
     .get('https://www.googleapis.com/books/v1/volumes?q=quilting')
     .then(response => {
@@ -38,7 +35,7 @@ function AddReview({ history, match, tempItem }) {
     .catch(error => { 
       console.error('Server Error', error);
     });
-  }
+  
   }, [id])
 
   function handleClick() {

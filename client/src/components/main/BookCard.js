@@ -5,11 +5,11 @@ function BookCard ({ book }) {
 console.log(book)
   return (
     <Card style={{width: '250px', height: '350px', fontSize: '12px', textAlign: 'left'}}>
-    <Image style={{width: '150px', height: '200px', textAlign: 'center', margin: '0 auto'}}src={book.volumeInfo.imageLinks.thumbnail} wrapped ui={false} />
+    {/* <Image style={{width: '150px', height: '200px', textAlign: 'center', margin: '0 auto'}}src={book.volumeInfo.imageLinks.thumbnail} wrapped ui={false} /> */}
     <Card.Content>
-      <Card.Header>{book.volumeInfo.title}</Card.Header>
+      <Card.Header>{book.title}</Card.Header>
       <Card.Meta>
-        <span>by {book.volumeInfo.authors}</span>
+        <span>by {book.author}</span>
       </Card.Meta>
     </Card.Content>
     <Card.Content extra>

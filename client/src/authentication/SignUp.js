@@ -3,6 +3,8 @@ import axios from 'axios'
 
 export default function SignUp(props)  {
     const [state, setState] = useState({
+        first_name: '',
+        last_name: '',
         email: '',
         password: ''
     })
@@ -18,16 +20,17 @@ export default function SignUp(props)  {
         e.preventDefault()
         console.log(state)
         axios
-            .post('https://bookr-bw.herokuapp.com/api/login', state)
+            .post('https://bookr-bw.herokuapp.com/api/register', state)
             .then(res => {
                 console.log(res)
-                localStorage.setItem('token', res.data.token)
-                props.history.push('/access')                
+                props.history.push('/login')                
             })
             .catch(err => {
                 console.log(err)
             })
-        setState({           
+        setState({
+            first_name: '',
+            last_name: '',
             email: '',
             password: ''
         })
@@ -36,11 +39,25 @@ export default function SignUp(props)  {
         return (
             <div className='wrapper'>
                 <div className='form-wrapper'>                    
-                    <form onSubmit={(e) => submitHandler(e, state)}>   
+                    <form onSubmit={(e) => submitHandler(e, state)}>               
+                        <input 
+                            type="text" 
+                            name="first_name" 
+                            placeholder="Register A Username"
+                            value={state.first_name}
+                            onChange={changeHandler}
+                        />
+                        <input 
+                            type="text" 
+                            name="last_name" 
+                            placeholder="Register A Username"
+                            value={state.last_name}
+                            onChange={changeHandler}
+                        />
                         <input 
                             type="email" 
                             name="email" 
-                            placeholder="Enter Email"
+                            placeholder="Register A Username"
                             value={state.email}
                             onChange={changeHandler}
                         />
@@ -49,7 +66,7 @@ export default function SignUp(props)  {
                             name="password" 
                             value={state.password}
                             onChange={changeHandler} 
-                            placeholder="Enter Password"
+                            placeholder="Register A Password"
                             required
                         />
                         <div className="createAccount">
