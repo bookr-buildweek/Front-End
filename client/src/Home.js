@@ -9,13 +9,14 @@ import BookList from './components/main/BookList';
 import UserPage from './components/user/UserPage';
 import BookPage from './components/main/BookPage';
 import AddReview from './components/main/AddReview';
+import Filter from './components/main/Filter';
 
 export default function Home() {
     return (
         
             <div>
                 <TabNav />
-                <Header />
+                {/* <Header /> */}
                 {/* <AppRouter /> */}
                 <Switch>
                     <Route path='/user' component={UserPage} />
@@ -26,13 +27,23 @@ export default function Home() {
                         <AddReview {...props} />
                         </div>
                     }/>
-                    <Route path='/:id' render={props => <BookPage {...props} />} />
+                    <Route path='/books/:category' render={props => 
+                       <div>
+                         <Banner />
+                         <BookList {...props} />
+                         </div>
+                         } 
+                       
+                    />
+                    <Route path='/:id' exact render={props => <BookPage {...props} />} />
                     <Route path='/' exact render={() => 
                         <div>
                         <Banner />
-                        <BookList />
+                        {/* <BookList /> */}
+                        <Filter />
                         </div>
                     } />
+                    
                 </Switch>
             </div>
     )
