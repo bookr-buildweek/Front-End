@@ -9,12 +9,13 @@ import BookList from './components/main/BookList';
 import UserPage from './components/user/UserPage';
 import BookPage from './components/main/BookPage';
 import AddReview from './components/main/AddReview';
+import Filter from './components/main/Filter';
 
 export default function Home() {
     return (
         
             <div>
-                <Header />
+                {/* <Header /> */}
                 <TabNav />
                 {/* <AppRouter /> */}
                 <Switch>
@@ -30,7 +31,8 @@ export default function Home() {
                     <Route path="/" exact render={() => 
                         <div>
                         <Banner />
-                        <BookList />
+                        {/* <BookList /> */}
+                        <Filter />
                         </div>
                     } />
                 </Switch>

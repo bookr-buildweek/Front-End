@@ -6,6 +6,7 @@ import PrivateRoute from './authentication/PrivateRoute';
 import SignUp from './authentication/SignUp';
 import Login from './authentication/Login';
 import {Switch } from 'react-router-dom'
+import './index.css';
 
 function App() {
 

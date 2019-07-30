@@ -58,8 +58,8 @@ function BookPage({ history, match }) {
     <Button onClick={handleClick} style={{alignSelf: 'flex-start', width: '400px'}}floated='right'>Back to Search Results</Button>
     <Wrap>
       <Item style={{padding: '40px'}}>
-        {/* <Item.Image size='small' src={displayBook.volumeInfo.imageLinks.thumbnail}  */}
-                    {/* style={{width: '200px'}}/> */}
+        <Item.Image size='small' src={displayBook.url} 
+                    style={{width: '200px'}}/>
       </Item>
       <Item.Content style={{display: 'flex', flexDirection: 'column', justifyItems: 'left', padding: '40px', width: '500px'}}>
         <Button style={{alignSelf: 'flex-end', width: '100px'}}floated='right'>Purchase</Button>

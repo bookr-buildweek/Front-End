@@ -1,10 +1,9 @@
 import React from 'react';
 
 function UserPage() {
-  console.log('user')
 
   return (
-    <h1>USER PAGE</h1>
+    <h1 style={{marginTop: '0px', paddingTop: '80px'}}> User</h1>
   )
 }
 
