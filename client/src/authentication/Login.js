@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import axiosWithAuth from '../axiosWithAuth';
 
 export default function SignUp(props)  {
     const [state, setState] = useState({
@@ -17,11 +18,12 @@ export default function SignUp(props)  {
     const submitHandler = (e, state) => {
         e.preventDefault()
         console.log(state)
-        axios
+        axiosWithAuth()
             .post('https://bookr-bw.herokuapp.com/api/login', state)
             .then(res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.token)
+                localStorage.setItem('reviewer', res.data.user.id)
                 props.history.push('/access')                
             })
             .catch(err => {

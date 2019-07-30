@@ -11,8 +11,8 @@ function App() {
 
   return (
     <div className="App">
-        <Route  path='/signup' render={(props) => <SignUp {...props} />} />
         <Route  path='/login' render={(props) => <Login {...props} />} />
+        <Route  path='/signup' render={(props) => <SignUp {...props} />} />
         <PrivateRoute path='/' component={Home} />   
     </div>
   );

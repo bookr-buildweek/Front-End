@@ -20,13 +20,13 @@ export default function Home() {
                 <Switch>
                     <Route path='/user' component={UserPage} />
                     {/* <Route path='/:id' render={props => <BookPage {...props} tempItem={tempItem}/>} /> */}
-                    <Route path='/:id' render={props => <BookPage {...props} />} />
                     <Route path='/:id/addreview' exact render={props => 
                         <div>
                         {/* <BookPage {...props} tempItem={tempItem}/> */}
                         <AddReview {...props} />
                         </div>
                     }/>
+                    <Route path='/:id' render={props => <BookPage {...props} />} />
                     <Route path="/" exact render={() => 
                         <div>
                         <Banner />
