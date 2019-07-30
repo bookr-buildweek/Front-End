@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Button, Image, Item, Card, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 import axiosWithAuth from '../../axiosWithAuth';
@@ -18,10 +16,9 @@ const Wrap = styled.div`
 function AddReview({ history, match }) {
   const id = match.params.id;
   const [review, setReview] = useState({reviewer: '', ratings: '', review: ''});
+  const [displayBook, setDisplayBook] = useState(null);
   const [bookID, setBookID] = useState({book_id: id});
   const [bookReview, setBookReview] = useState([]);
-
-  const [displayBook, setDisplayBook] = useState(null);
 
   useEffect(() => {
     const reviewID = JSON.parse(localStorage.getItem('reviewer'));
@@ -29,11 +26,6 @@ function AddReview({ history, match }) {
     axiosWithAuth()
     .get(`https://bookr-bw.herokuapp.com/api/books/${id}`)
     .then(response => {
-      // response.data.items.forEach(item => {
-      //   if (item.id === id) {
-      //     setDisplayBook(item);
-      //   }
-      // })
       setDisplayBook(response.data);
 
       // This will let us grab reviews by ID to be mapped out for My Page, just need to change the number 

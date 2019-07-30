@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios'
 import axiosWithAuth from '../axiosWithAuth';
 
 export default function SignUp(props)  {
@@ -23,8 +22,9 @@ export default function SignUp(props)  {
             .then(res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.token)
+                // below is the only way to retrieve the user id from server
                 localStorage.setItem('reviewer', res.data.user.id)
-                props.history.push('/access')                
+                props.history.push('/')                
             })
             .catch(err => {
                 console.log(err)
