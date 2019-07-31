@@ -29,7 +29,7 @@ function BookList({ handleClick, match, history }) {
     });
   }, [])
 
-  function handleClick() {
+  function ClickHandler() {
     history.push('/')
   }
   
@@ -43,7 +43,7 @@ function BookList({ handleClick, match, history }) {
   // }
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
-      <Button onClick={handleClick} style={{alignSelf: 'flex-start', color: '#0D5813', background: 'transparent', marginLeft: '20px'}}>back to home page</Button>
+      <Button onClick={ClickHandler} style={{alignSelf: 'flex-start', color: '#0D5813', background: 'transparent', marginLeft: '20px'}}>back to home page</Button>
       <i style={{color: ' #BF9018', fontWeight: '500', textAlign: 'center'}}>filtered results</i>
       <div className="grid-view">
         {bookList.map((book, index) => {
