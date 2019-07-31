@@ -33,17 +33,18 @@ function BookList({ handleClick, match, history }) {
     history.push('/')
   }
   
-  const FilterHandler = e => {
-    //this is being used for search 
-    // setBookList({
-    //   ...bookList,
-    //   [e.target.name]: bookList.filter(search => search.title.toLowerCase().includes(search.title.toLowerCase()))
-    // })
-    bookList.title.filter(search => search.toLowerCase().includes(search.toLowerCase()))    
-  }
+  // const FilterHandler = e => {
+  //   //this is being used for search 
+  //   // setBookList({
+  //   //   ...bookList,
+  //   //   [e.target.name]: bookList.filter(search => search.title.toLowerCase().includes(search.title.toLowerCase()))
+  //   // })
+  //   bookList.title.filter(search => search.toLowerCase().includes(search.toLowerCase()))    
+  // }
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
-      <Button onClick={handleClick} style={{alignSelf: 'flex-start', width: '400px', color: '#0D5813'}}floated='right'>Back to Home Page</Button>
+      <Button onClick={handleClick} style={{alignSelf: 'flex-start', color: '#0D5813', background: 'transparent', marginLeft: '20px'}}>back to home page</Button>
+      <i style={{color: ' #BF9018', fontWeight: '500', textAlign: 'center'}}>filtered results</i>
       <div className="grid-view">
         {bookList.map((book, index) => {
           return <Link to={`/${book.id}`} key={index} ><BookCard book={book}/></Link>
