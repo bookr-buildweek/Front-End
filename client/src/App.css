@@ -1,33 +1,66 @@
 .App {
-  text-align: center;
+  font-size: 62.5%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.button-style {
+  width: 220px;
+  height: 30px;
+  margin: 10px;
   color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.wrapper {
+  width: 600px;
+  border-radius: 20px;
+  background-color: rgb(255, 252, 243);
+  padding: 80px;
+  margin: 100px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 16px 32px -9px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 16px 32px -9px rgba(0,0,0,0.57);
+  box-shadow: 0px 16px 32px -9px rgba(0,0,0,0.57);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wrapper h1 {
+  color: #0d5814
+}
+
+.signup-text p:last-child {
+  margin-bottom: 30px;
+}
+
+.green-text {
+  color: #169923;
+  font-size: 14px;
+}
+
+.signup-btn {
+  color: white;
+  width: 200px;
+  padding: 10px 10px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.42);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.42);
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.42);
+}
+
+.banner-box {
+  display: 'flex';
+  align-items: 'center';
+  width: '70%';
+  height: '30%';
+  background-color: '#332706';
+  opacity: '0.8';
+  position: 'absolute';
+  top: '70px';
+  left: '0'
 }
