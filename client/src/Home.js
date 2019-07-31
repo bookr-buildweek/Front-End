@@ -1,8 +1,9 @@
+
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import Header from './components/header/Header';
 import TabNav from './components/header/TabNav';
-import AppRouter from './components/AppRouter';
+// import AppRouter from './components/AppRouter';
 // import { Switch, Route } from 'react-router-dom';
 import Banner from './components/header/Banner';
 import BookList from './components/main/BookList';
@@ -15,8 +16,8 @@ export default function Home() {
     return (
         
             <div>
-                {/* <Header /> */}
                 <TabNav />
+                {/* <Header /> */}
                 {/* <AppRouter /> */}
                 <Switch>
                     <Route path='/user' component={UserPage} />
@@ -27,14 +28,28 @@ export default function Home() {
                         <AddReview {...props} />
                         </div>
                     }/>
-                    <Route path='/:id' render={props => <BookPage {...props} />} />
-                    <Route path="/" exact render={() => 
+                    <Route path='/books/:category' render={props => 
+                       <div>
+                         <Banner />
+                         <BookList {...props} />
+                         </div>
+                         } 
+                       
+                    />
+                    <Route path='/:id' exact render={props => 
+                             <div>
+                             <Banner />
+                             <BookPage {...props} />
+                             </div>
+                    }/>
+                    <Route path='/' exact render={() => 
                         <div>
                         <Banner />
                         {/* <BookList /> */}
                         <Filter />
                         </div>
                     } />
+                    
                 </Switch>
             </div>
     )
