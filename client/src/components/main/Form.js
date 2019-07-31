@@ -3,7 +3,7 @@ import { Button, Image, Item, Card, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
 import axiosWithAuth from '../../axiosWithAuth';
 
-function Form({ id, setSubmitted, submitted }) {
+function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formClass, setFormClass, messageClass, setMessageClass }) {
  
   const [review, setReview] = useState({reviewer: '', ratings: '', review: ''});
   const [displayBook, setDisplayBook] = useState(null);
@@ -52,6 +52,12 @@ function Form({ id, setSubmitted, submitted }) {
           // localStorage.setItem('reviewID', res.data.id)
           setBookReview([...bookReview, res.data[0] ])
           setSubmitted(!submitted);
+          setFormClass('hidden');
+          setButtonClass('visible');
+          setMessageClass('visible');
+          setTimeout(() => {
+            setMessageClass('hidden');
+          }, 3000)
         })
         .catch(err => {
           console.log(err)
@@ -59,33 +65,14 @@ function Form({ id, setSubmitted, submitted }) {
     };
   
   return (
-    <div>
+    <div className={`${formClass}`}>
       <p style={{marginTop: '10px'}}>Enter your review here</p>
     <form id="form" onSubmit={handleSubmit} style={{border: '1px solid transparent'}}>
-    {/* <fieldset> */}
-      {/* <legend>Add a Review</legend> */}
-      {/* <div >
-        <label>
-          Rating
-          <div>
-            <input
-              type="text"
-              name="ratings"
-              value={review.ratings}
-              placeholder="Enter your rating"
-              onChange={handleChange}
-            />
-          </div>
-        </label>
-      </div> */}
       <div>
-        {/* <label>Review</label> */}
         <input style={{width: '300px', height: '150px'}}
           type="review"
           name="review"
           value={review.review}
-          aria-describedby="emailHelp"
-          // placeholder="Enter email"
           onChange={handleChange}
         />
       </div>
@@ -101,10 +88,9 @@ function Form({ id, setSubmitted, submitted }) {
               />
             </div>
          </label>
+      <p className={`${messageClass}`}style={{color: 'green', fontSize: '1rem', paddingLeft: '10px'}}>Your review was submitted <Icon name='check' /></p>
       <button className='button-style' type="submit"
-            //  onClick={handleAddReview} 
-             style={{background: '#BF9018'}}>Add A Review</button>
-    {/* </fieldset> */}
+             style={{background: '#BF9018', marginLeft: '8px'}}>Add A Review</button>
   </form>
   </div>
   )

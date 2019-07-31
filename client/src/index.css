@@ -38,3 +38,56 @@ code {
 .grid-view div.card.ui {
   margin: 1.25rem;
 }
+
+.hidden {
+  visibility: hidden
+}
+
+.visible {
+  visibility: visible;
+}
+
+.banner-text {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  height: 300px;
+  background: #332706;
+  opacity: 0.8;
+  position: absolute;
+  top: 70px;
+  left: '0';
+}
+
+@media screen and (max-width: 1500px) {
+  .banner-text{
+    height: 250px;
+  }
+} 
+
+@media screen and (max-width: 1280px) {
+  .banner-text {
+    height: 200px;
+  }
+} 
+
+@media screen and (max-width: 1100px) {
+  .banner-text {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .hidden-text {
+    display: none;
+  }
+  .banner-text {
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .banner-text{
+    display: none;
+  }
+}

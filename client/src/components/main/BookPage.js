@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axiosWithAuth from '../../axiosWithAuth';
-import { Button, Item, Card, Icon } from 'semantic-ui-react';
+import { Button, Item, Card } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 import Review from './Review';
@@ -18,12 +18,12 @@ const Wrap = styled.div`
   justify-content: center;
   align-items: center;
   text-align: left;
- 
+
 `;
 const ReviewWrap = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-items: center;
   text-align: left;
 `;
 const ReviewHeader = styled.div`
@@ -40,6 +40,10 @@ function BookPage({ history, match }) {
 
   const [displayBook, setDisplayBook] = useState(null);
   const [favorite, setFavorite] = useState({book_id: '', user_id: ''});
+
+  const [buttonClass, setButtonClass] = useState('visible');
+  const [formClass, setFormClass] = useState('hidden');
+  const [messageClass, setMessageClass] = useState('hidden');
 
   useEffect(() => {
     console.log('INSIDE BOOKPAGE')
@@ -73,17 +77,21 @@ function BookPage({ history, match }) {
   function handleClick() {
     history.go(-1)
   }
-  // function handleAddReview() {
-  //   history.push(`/${id}/addreview`)
-  // }
+  function handleAddReview(e) {
+    e.preventDefault();
+    console.log('add review clicked');
+    setButtonClass('hidden');
+    setFormClass('visible');
+  }
 
   if (displayBook) {
     return (
       <div style={{display: 'flex', flexDirection: 'column'}}>
       <Button onClick={handleClick} style={{alignSelf: 'flex-start', color: '#0D5813', background: 'transparent', marginLeft: '20px'}}>back to search results</Button>
+      <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'center', width: '60%', margin: '0 auto'}}>
       <Wrap>
         <Item style={{padding: '40px'}}>
-          <img style={{width: '300px'}} size='small' src={displayBook.url} alt="book"/>
+          <img style={{width: '330px'}} size='small' src={displayBook.url} alt="book"/>
         </Item>
         <Item.Content style={{display: 'flex', flexDirection: 'column', justifyItems: 'left', padding: '40px', width: '500px'}}>
           {/* <Button style={{alignSelf: 'flex-end', width: '100px'}}floated='right'>Purchase</Button> */}
@@ -96,22 +104,32 @@ function BookPage({ history, match }) {
               <span style={{paddingLeft: '60px'}}> {displayBook.reviews ? displayBook.reviews.length : 0} Reviews</span>
             </Card.Content>
           </div>
-            <Form id={id} setSubmitted={setSubmitted} submitted={submitted}/>
+            <Form id={id} setSubmitted={setSubmitted} submitted={submitted} buttonClass={buttonClass} 
+                          setButtonClass={setButtonClass} formClass={formClass} setFormClass={setFormClass}
+                          messageClass={messageClass} setMessageClass={setMessageClass} />
+            <button className={`${buttonClass}`}
+              onClick={(e) => handleAddReview(e)} 
+              style={{background: '#BF9018', width: '220px', height: '30px', margin: '10px', color: 'white',
+              border: 'none',
+              borderRadius: '20px',
+              fontSize: '1.1rem',
+              marginTop: '-40px'
+            }}>Add A Review</button>
             <button onClick={AddToShelf} className='button-style' style={{background: '#0D5813'}}>Add To My Books</button>
-            {/* <Link to={`/${id}/addreview`}><button className='button-style' 
-            //  onClick={handleAddReview} 
-             style={{background: '#BF9018'}}>Add A Review</button></Link> */}
         </Item.Content>
       </Wrap>
-      <div>
-        <ReviewHeader style={{width:'50%', margin: '0 auto'}}>
-          <h2 style={{margin: '10px', color: '#BF9018', fontSize: '3.6rem'}}>User Reviews</h2>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <ReviewHeader>
+          <h2 style={{margin: '10px', color: '#BF9018', fontSize: '2rem', marginLeft: '0'}}>User Reviews</h2>
         </ReviewHeader>
-        <ReviewWrap>
+        <ReviewWrap 
+        // style={{width:'70%', margin: '0 auto'}}
+        >
           {displayBook.reviews ? displayBook.reviews.map((item, index) => {
             return <Review key={index} review={item}/>
           }) : null} 
         </ReviewWrap>
+      </div>
       </div>
       </div>
     )
@@ -122,3 +140,24 @@ function BookPage({ history, match }) {
   }
   }
 export default BookPage;
+
+// {
+//   "id": 3,
+//   "isbn": "9781449365035",
+//   "title": "Speaking JavaScript",
+//   "subtitle": "An In-Depth Guide for Programmers",
+//   "author": "Axel Rauschmayer",
+//   "publisher": "O'Reilly Media",
+//   "published": "2014-02-01T00:00:00.000Z",
+//   "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
+//   "category": null,
+//   "reviews": [
+//       {
+//           "id": 16,
+//           "reviewer": 1,
+//           "ratings": 2,
+//           "review": "Hard to understand",
+//           "book_id": 19
+//       }
+//   ]
+// }

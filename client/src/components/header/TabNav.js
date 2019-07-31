@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tab, Menu, Icon } from 'semantic-ui-react'
+// import { Tab, Menu, Icon } from 'semantic-ui-react'
 import { NavLink } from "react-router-dom";
 import Logo from '../../assets/BOOKR_LOGO.png';
 import User from '../../assets/AVATAR.png';
@@ -23,7 +23,11 @@ function TabNav() {
   return (
     <TabWrap>
       <NavLink to="/" exact ><div style={{width: '50px', marginLeft: '20px', marginTop: '10px'}}><img style={{width: '100%'}} src={Logo} alt=""/></div></NavLink>
-      <NavLink to="/user" exact><div style={{width: '30px', marginRight: '20px', marginTop: '10px'}}><img style={{width: '100%'}} src={User} alt=""/></div></NavLink>
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <NavLink to="/mybooks" exact><div style={{fontSize: '1rem', fontWeight: '600', color: 'white', marginRight: '20px', }}>MY BOOKS</div></NavLink>
+        <NavLink to="/settings" exact><div style={{fontSize: '1rem', fontWeight: '600', color: 'white', marginRight: '20px', }}>SETTINGS</div></NavLink>
+        <NavLink to="/user" exact><div style={{width: '30px', marginRight: '20px', marginTop: '10px'}}><img style={{width: '100%'}} src={User} alt=""/></div></NavLink>
+      </div>
     </TabWrap>
   )
 }
