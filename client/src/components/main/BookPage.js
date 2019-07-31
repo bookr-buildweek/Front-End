@@ -140,24 +140,3 @@ function BookPage({ history, match }) {
   }
   }
 export default BookPage;
-
-// {
-//   "id": 3,
-//   "isbn": "9781449365035",
-//   "title": "Speaking JavaScript",
-//   "subtitle": "An In-Depth Guide for Programmers",
-//   "author": "Axel Rauschmayer",
-//   "publisher": "O'Reilly Media",
-//   "published": "2014-02-01T00:00:00.000Z",
-//   "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
-//   "category": null,
-//   "reviews": [
-//       {
-//           "id": 16,
-//           "reviewer": 1,
-//           "ratings": 2,
-//           "review": "Hard to understand",
-//           "book_id": 19
-//       }
-//   ]
-// }
