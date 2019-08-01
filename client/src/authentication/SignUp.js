@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import { Form } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default function SignUp(props)  {
     const [state, setState] = useState({
@@ -93,7 +94,7 @@ export default function SignUp(props)  {
                     className="signup-btn"
                     style={(state.first_name && state.last_name && state.email && state.password)? {backgroundColor: "#0D5814"}:{backgroundColor: "#85a688"}}>
                     Submit</button>
-                <p className="green-text">Already have an account?</p>
+                <Link to="/login"><p className="green-text">Already have an account?</p></Link>
             </Form>
         </div>
     )

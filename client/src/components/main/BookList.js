@@ -13,7 +13,7 @@ function BookList({ handleClick, match, history }) {
     axiosWithAuth()
     .get('https://bookr-bw.herokuapp.com/api/books')
     .then(response => {
-      console.log(response.data)
+      console.log('DATA', response.data)
       let arr = [];
       response.data.forEach(book => {
         console.log(book);
@@ -33,18 +33,10 @@ function BookList({ handleClick, match, history }) {
     history.push('/')
   }
   
-  // const FilterHandler = e => {
-  //   //this is being used for search 
-  //   // setBookList({
-  //   //   ...bookList,
-  //   //   [e.target.name]: bookList.filter(search => search.title.toLowerCase().includes(search.title.toLowerCase()))
-  //   // })
-  //   bookList.title.filter(search => search.toLowerCase().includes(search.toLowerCase()))    
-  // }
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <Button onClick={ClickHandler} style={{alignSelf: 'flex-start', color: '#0D5813', background: 'transparent', marginLeft: '20px'}}>back to home page</Button>
-      <i style={{color: ' #BF9018', fontWeight: '500', textAlign: 'center'}}>filtered results</i>
+      <i style={{color: ' #BF9018', fontWeight: '500', textAlign: 'center', fontSize: '1.2rem'}}>filtered results</i>
       <div className="grid-view">
         {bookList.map((book, index) => {
           return <Link to={`/${book.id}`} key={index} ><BookCard book={book}/></Link>

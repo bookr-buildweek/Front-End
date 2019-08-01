@@ -1,22 +1,45 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 function UserBooks(props) {
     const {book} = props;
+   
+    console.log(book);
+
+    const Wrapper = styled.div`
+        display: flex;
+        justify-content: center;
+        // margin-left: 25%;
+    `
+    const Img = styled.img`
+        width: 220px;
+        height: 320px;
+        padding: 5px;
+    `
+    const H3 = styled.h3`
+        font-family: Roboto, sans serif;
+        font-weight: 700;
+        color: #332706;
+        font-size: 2rem;
+        line-height: 40px;
+    `
+    const P = styled.p`
+        font-family: Roboto, sans serif;
+        font-size: 1rem;
+        line-height: 21px;
+        color: #332706;
+    `
 
     return (
-        <Card style={{width: '200px', height: '320px', fontSize: '12px', textAlign: 'left', boxShadow: '0 1px 3px 0 rgba(191, 175, 134, 0.3), 0 0 0 1px rgba(191, 175, 134, 0.3)'}}>
-            <img style={{width: '150px', height: '200px', textAlign: 'center', margin: '0 auto', objectFit: 'contain', padding: '5px'}}src={book.url} alt="book" />
-            <Card.Content style={{}}>
-            <Card.Header>{book.title}</Card.Header>
-            <Card.Meta>
-                <span>by</span> <span style={{color: ' #BF9018'}}>{book.author}</span>
-            </Card.Meta>
-            </Card.Content>
-            <Card.Content extra>
-                {/* <div style={{width: '50px'}}><img style={{width: '100px'}} src={stars} alt="star"/></div> */}
-            </Card.Content>
-        </Card>
+        <Wrapper>
+            <Img src={book.url} alt="book" />
+            <div>
+                <H3>{book.title}</H3>
+                <P>{book.author}</P>
+                <P>{book.publisher} {book.published.slice(0, 4)}</P>
+            </div>
+        </Wrapper>
     );
 }
 

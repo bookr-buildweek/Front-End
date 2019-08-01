@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Math from '../../assets/Math_Icon.png';
+import Programming from '../../assets/binary.jpg';
 import Language from '../../assets/Language_Arts_Icon.png';
 import Science from '../../assets/Science_Icon.png';
 import History from '../../assets/Geo_Icon.png';
@@ -12,7 +12,7 @@ import PhysEd from '../../assets/Phys_Ed_Icon.png';
 const FilterWrap = styled.div`
   display: flex;
   flex-direction: column;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
 `
 const FilterBox = styled.div`
@@ -36,25 +36,26 @@ const Box = styled.div`
 const Div = styled.div`
     @media (max-width: 768px) {
         flex-direction: column;
+
     }
 `
 
 function Filter() {
     return (
-        <FilterWrap>
-        <FilterBox>
+        <FilterWrap style={{display: 'flex', justifyContent: 'center'}}>
+        <FilterBox >
         <h2 style={{color: '#BF9018', fontWeight: '700'}}>Filter books by category</h2>
             
-            <Div style={{display: 'flex'}}>
+            <div style={{display: 'flex'}}>
                 <div style={{display: 'flex', flexDirection: 'column', paddingRight: '20px'}}>
                     <Link to="/books/Programming">
                     <div style={{ display: 'flex', alignItems: 'center', border: '1px solid rgba(191, 175, 134, 0.3)', padding: '10px',
                                     width: '300px', marginBottom: '10px', background: '#FFF8E6'}}>
-                        <img src={Math} alt="Math icon" />
+                        <img src={Programming} alt="binary" />
                         <p style={{padding: '0 10px 0 10px', fontSize: '20px', color: '#0D5814', fontWeight: '700'}}>Programming</p>
                     </div>
                     </Link>
-                    <Link to="books/language">
+                    <Link to="books/Language_Arts">
                     <div style={{ display: 'flex', alignItems: 'center', border: '1px solid rgba(191, 175, 134, 0.3)', padding: '10px',
                                     width: '300px', marginBottom: '10px', background: '#FFF8E6'}}>
                         <img src={Language} alt="Language arts icon" />
@@ -71,21 +72,21 @@ function Filter() {
                 </div>
 
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <Link to="books/history">
+                    <Link to="books/History">
                     <div style={{ display: 'flex', alignItems: 'center', border: '1px solid rgba(191, 175, 134, 0.3)', padding: '10px',
                                     width: '300px', marginBottom: '10px', background: '#FFF8E6'}}>
                         <img src={History} alt="History/Geography icon"/>
                         <p style={{padding: '10px', fontSize: '20px', color: '#0D5814', fontWeight: '700'}}>History/Geography</p>
                     </div>
                     </Link>
-                    <Link to='books/arts'>
+                    <Link to='books/Fine_Arts'>
                     <div style={{ display: 'flex', alignItems: 'center', border: '1px solid rgba(191, 175, 134, 0.3)', padding: '10px',
                                     width: '300px', marginBottom: '10px', background: '#FFF8E6'}}>
                         <img src={Arts} alt="Fine arts icon"/>
                         <p style={{padding: '10px', fontSize: '20px', color: '#0D5814', fontWeight: '700'}}>Fine Arts</p>
                     </div>
                     </Link>
-                    <Link to='books/physical'>
+                    <Link to='books/Physical_Education'>
                     <div style={{ display: 'flex', alignItems: 'center', border: '1px solid rgba(191, 175, 134, 0.3)', padding: '10px',
                                     width: '300px', marginBottom: '10px', background: '#FFF8E6'}}>
                         <img src={PhysEd} alt="Physical education icon" />
@@ -93,10 +94,11 @@ function Filter() {
                     </div>
                     </Link>
                 </div>
-            </Div>
+            </div>
         </FilterBox>
         </FilterWrap>
     )
 }
 
 export default Filter;
+
