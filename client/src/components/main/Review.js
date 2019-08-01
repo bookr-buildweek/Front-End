@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Icon } from 'semantic-ui-react';
 import axiosWithAuth from '../../axiosWithAuth';
-
 import ThreeStar from '../../assets/3_stars.png';
 import OneStar from '../../assets/1_star.png';
 import TwoStar from '../../assets/2_stars.png';
@@ -12,8 +11,8 @@ import { UserContext } from './../contexts/UserContext';
 function Review({ review }) {
   console.log('REVIEWER', review.reviewer)
   const userId = review.reviewer;
-  // const user = useContext(UserContext);
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState('');
+  const stars = [OneStar, TwoStar, ThreeStar, FourStar, FiveStar]
   useEffect(() => {
     axiosWithAuth()
     .get(`https://bookr-bw.herokuapp.com/api/users/${userId}`)
@@ -35,7 +34,7 @@ function Review({ review }) {
             <Icon name='star outline' />
             <Icon name='star outline' />
             <Icon name='star outline' /> */}
-            <img style={{width: '100px'}} src={FiveStar} alt="star"/>
+            <img style={{width: '100px'}} src={stars[review.ratings - 1]} alt="star"/>
           </div>
       </div>
       <p style={{marginTop: '10px'}}>{review.review}</p>

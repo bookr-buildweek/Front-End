@@ -8,6 +8,7 @@ import UserPage from './components/user/UserPage';
 import BookPage from './components/main/BookPage';
 import AddReview from './components/main/AddReview';
 import Filter from './components/main/Filter';
+import User from './components/user/User';
 import { UserContext } from './components/contexts/UserContext';
 
 export default function Home() {
@@ -30,7 +31,8 @@ export default function Home() {
                 <Banner />
 
                 <Switch>
-                    <Route path='/user' component={UserPage} />
+                    <Route path='/user' component={User} />
+                    <Route path='/mybooks' component={UserPage} />
                     <Route path='/:id/addreview' exact render={props => 
                         <div>
                         <AddReview {...props} />
