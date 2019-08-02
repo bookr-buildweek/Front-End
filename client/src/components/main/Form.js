@@ -98,10 +98,10 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
               <div><Icon onClick={(e) => handleStarClick(e, indexes[4])} style={{fontSize: '1rem'}} value={indexes[4]} style={{fontSize: '1rem'}} name={emptyStar[4]} /></div>
             </span>
             </div>
-         </label>
+        </label>
       <p className={`${messageClass}`}style={{color: 'green', fontSize: '1rem', paddingLeft: '10px'}}>Your review was submitted! <Icon name='check' /></p>
       <button className='button-style' type="submit"
-             style={{background: '#BF9018', marginLeft: '8px'}}>Add A Review</button>
+              style={{background: '#BF9018', marginLeft: '8px'}}>Add A Review</button>
   </form>
   </div>
   )
