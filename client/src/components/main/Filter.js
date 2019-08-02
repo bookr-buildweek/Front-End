@@ -46,7 +46,7 @@ function Filter() {
         <FilterBox >
         <h2 style={{color: '#BF9018', fontWeight: '700'}}>Filter books by category</h2>
             
-            <div style={{display: 'flex'}}>
+            <Div style={{display: 'flex'}}>
                 <div style={{display: 'flex', flexDirection: 'column', paddingRight: '20px'}}>
                     <Link to="/books/Programming">
                     <div style={{ display: 'flex', alignItems: 'center', border: '1px solid rgba(191, 175, 134, 0.3)', padding: '10px',
@@ -94,7 +94,7 @@ function Filter() {
                     </div>
                     </Link>
                 </div>
-            </div>
+            </Div>
         </FilterBox>
         </FilterWrap>
     )
