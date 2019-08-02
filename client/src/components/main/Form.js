@@ -59,8 +59,11 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
           setErrorMessage('visible');
           setTimeout(() => {
             setErrorMessage('hidden');
-          }, 1000)
+          }, 3000)
           setButtonClass('visible');
+          setReview({reviewer: '', ratings: '', review: ''});
+          setEmptyStar(['star outline', 'star outline', 
+          'star outline', 'star outline', 'star outline']);
         });
         console.log('REVIEW', review)
     };
