@@ -21,7 +21,7 @@ function UserBooks(props) {
         font-family: Roboto, sans serif;
         font-weight: 700;
         color: #332706;
-        font-size: 2rem;
+        font-size: 1.5rem;
         line-height: 40px;
     `
     const P = styled.p`
@@ -30,13 +30,12 @@ function UserBooks(props) {
         line-height: 21px;
         color: #332706;
     `
-
     return (
         <Wrapper>
-            <Img src={book.url} alt="book" />
+            <Img src={book.url} alt="book" style={{paddingRight: '10px'}}/>
             <div>
                 <H3>{book.title}</H3>
-                <P>{book.author}</P>
+                <P>by <strong>{book.author}</strong></P>
                 <P>{book.publisher} {book.published.slice(0, 4)}</P>
             </div>
         </Wrapper>

@@ -34,7 +34,6 @@ const ReviewHeader = styled.div`
 
 function BookPage({ history, match }) {
   const id = match.params.id;
-  console.log("at BookPage");
   const [submitted, setSubmitted] = useState(false);
 
   const [displayBook, setDisplayBook] = useState(null);
@@ -47,17 +46,14 @@ function BookPage({ history, match }) {
   const [formClass, setFormClass] = useState('hidden');
   const [messageClass, setMessageClass] = useState('hidden');
   const [bookSavedClass, setBookSavedClass] = useState('none');
-  const [bookSavedErrorClass, setBookSavedErrorClass] = useState('none');
   const [message, setMessage] = useState();
   const [color, setColor] = useState();
 
   useEffect(() => {
-    console.log('INSIDE BOOKPAGE')
     axiosWithAuth()
     .get(`https://bookr-bw.herokuapp.com/api/books/${id}`)
     .then(response => {
       setDisplayBook(response.data)
-      console.log('BOOK', response.data)
       setRatings(response.data.averageRatings);
     })
     .catch(error => { 
@@ -68,14 +64,13 @@ function BookPage({ history, match }) {
 
   const AddToShelf = () => {
     const userID = localStorage.getItem('reviewer');
-    console.log(displayBook)
+
     axiosWithAuth()
     .post(`https://bookr-bw.herokuapp.com/api/books/${id}/shelf`, {
       "book_id": displayBook.id,
       "user_id": userID
     })
     .then( res => {
-      console.log(res);
       if (bookSavedClass === 'none') {
         setColor('green');
         setMessage('Book was saved successfully!')
@@ -86,8 +81,7 @@ function BookPage({ history, match }) {
       }
     })
     .catch(err => {
-      console.log(err);
-      if (bookSavedErrorClass === 'none') {
+      if (bookSavedClass === 'none') {
         setColor('red');
         setMessage('Book is already saved!')
         setBookSavedClass('visible');
@@ -104,7 +98,6 @@ function BookPage({ history, match }) {
 
   function handleAddReview(e) {
     e.preventDefault();
-    console.log('add review clicked');
     setButtonClass('hidden');
     setFormClass('visible');
   }
@@ -112,14 +105,13 @@ function BookPage({ history, match }) {
   if (displayBook) {
     return (
       <div style={{display: 'flex', flexDirection: 'column'}}>
-        <Button onClick={handleClick} style={{alignSelf: 'flex-start', color: '#0D5813', background: 'transparent', marginLeft: '20px'}}>back to search results</Button>
+        <Button onClick={handleClick} style={{alignSelf: 'flex-start', color: '#0D5813', background: 'transparent', marginLeft: '20px', fontSize: '1.2rem'}}>back to search results</Button>
         <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'center', width: '60%', margin: '0 auto'}}>
           <Wrap>
             <div style={{padding: '40px 20px 0 0', height: '600px'}}>
               <img style={{ objectFit: 'fill', maxWidth: '100%', maxHeight: '100%'}} size='small' src={displayBook.url} alt="book"/>
             </div>
             <Item.Content style={{display: 'flex', flexDirection: 'column', justifyItems: 'left', padding: '40px 0 0 0', width: '500px', height: '600px'}}>
-              {/* <Button style={{alignSelf: 'flex-end', width: '100px'}}floated='right'>Purchase</Button> */}
               <Item.Header><h2 style={{fontSize: '1.5rem'}}>{displayBook.title}</h2></Item.Header>
               <Item.Description style={{paddingTop: '5px', fontSize: '1rem'}}>by <strong>{displayBook.author}</strong></Item.Description>
               <Item.Header style={{paddingTop: '5px', fontSize: '1rem'}}>{displayBook.publisher} {displayBook.published}</Item.Header>
@@ -130,23 +122,24 @@ function BookPage({ history, match }) {
                 </Card.Content>
               </div>
 
-                <Form id={id} setSubmitted={setSubmitted} submitted={submitted} buttonClass={buttonClass} 
-                              setButtonClass={setButtonClass} formClass={formClass} setFormClass={setFormClass}
-                              messageClass={messageClass} setMessageClass={setMessageClass} 
-                />
+              <Form id={id} setSubmitted={setSubmitted} submitted={submitted} buttonClass={buttonClass} 
+                            setButtonClass={setButtonClass} formClass={formClass} setFormClass={setFormClass}
+                            messageClass={messageClass} setMessageClass={setMessageClass} 
+              />
 
-                <button className={`${buttonClass}`}
-                  onClick={(e) => handleAddReview(e)} 
-                  style={{background: '#BF9018', width: '220px', height: '30px', margin: '10px 10px 20px 10px', color: 'white',
-                  border: 'none',
-                  borderRadius: '20px',
-                  fontSize: '1.1rem',
-                  marginTop: '-40px',
-                }}>Add A Review</button>
-                <button onClick={AddToShelf} className='button-style' style={{background: '#0D5813', marginTop: '0px'}}>Add To My Books</button>
-                <p className={`${bookSavedClass}`}style={{color: `${color}`, fontSize: '1rem', paddingLeft: '10px', marginBottom: '30px', }}>{message} <Icon name='check' /></p>
-                {/* <p className={`${bookSavedErrorClass}`}style={{color: 'darkred', fontSize: '1rem', paddingLeft: '10px', marginBottom: '30px'}}>Book is already saved! <Icon name='check' /></p> */}
-            </Item.Content>
+              <button className={`${buttonClass}`}
+                      onClick={(e) => handleAddReview(e)} 
+                      style={{background: '#BF9018', width: '220px', height: '30px', margin: '10px 10px 20px 10px', color: 'white',
+                      border: 'none',
+                      borderRadius: '20px',
+                      fontSize: '1.1rem',
+                      marginTop: '-40px',}}>
+                Add A Review </button>
+                <button onClick={AddToShelf} className='button-style' style={{background: '#0D5813', marginTop: '0px'}}>
+                Add To My Books</button>
+                <p className={`${bookSavedClass}`}style={{color: `${color}`, fontSize: '1rem', paddingLeft: '10px', marginBottom: '30px', }}>
+                {message} <Icon name='check' /></p>
+             </Item.Content>
           </Wrap>
           <div style={{display: 'flex', flexDirection: 'column'}}>
             <ReviewHeader>

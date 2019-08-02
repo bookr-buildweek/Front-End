@@ -21,17 +21,6 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
     .get(`https://bookr-bw.herokuapp.com/api/books/${id}`)
     .then(response => {
       setDisplayBook(response.data);
-
-      // This will let us grab reviews by ID to be mapped out for My Page, just need to change the number 
-      // axiosWithAuth()
-      // .get('https://bookr-bw.herokuapp.com/api/user/10/reviews')
-      // .then(res => {
-      //   console.log(res);
-      // })
-      // .catch(err => {
-      //   console.log(err)
-      // })
-
     })
     .catch(error => { 
       console.error('Server Error', error);
@@ -53,7 +42,6 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
     axiosWithAuth()
         .post(`https://bookr-bw.herokuapp.com/api/books/${bookID.book_id}/review`, review)
         .then(res => {
-          // localStorage.setItem('reviewID', res.data.id)
           setBookReview([...bookReview, res.data[0] ])
           setSubmitted(!submitted);
           setFormClass('hidden');
@@ -72,7 +60,6 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
     function handleStarClick(e, val) {
       e.preventDefault();
       console.log('index', emptyStar[0])
-      // emptyStar[0] = 'star'
       let arr = []
       emptyStar.forEach((item, i) => {
         if (i <= val) {
@@ -93,7 +80,7 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
       <h4 style={{marginTop: '10px'}}>Enter your review here</h4>
     <form id="form" onSubmit={handleSubmit} style={{border: '1px solid transparent'}}>
       <div>
-        <input style={{width: '300px', height: '150px'}}
+        <input style={{width: '300px', height: '150px', fontSize: '1.2rem'}}
           type="review"
           name="review"
           value={review.review}
@@ -101,9 +88,9 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
         />
       </div>
         <label>
-            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '10px'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '10px', width: '300px'}}>
             <h4>How many stars?</h4>
-            <span style={{paddingRight: '20px', display: 'flex'}}>
+            <span style={{display: 'flex'}}>
               <div><Icon  onClick={(e) => handleStarClick(e, indexes[0])} style={{fontSize: '1rem'}} value={indexes[0]} name={emptyStar[0]} /></div>
               <div><Icon onClick={(e) => handleStarClick(e, indexes[1])} style={{fontSize: '1rem'}} value={indexes[1]} style={{fontSize: '1rem'}} name={emptyStar[1]} /></div>
               <div><Icon onClick={(e) => handleStarClick(e, indexes[2])} style={{fontSize: '1rem'}} value={indexes[2]} style={{fontSize: '1rem'}} name={emptyStar[2]} /></div>
@@ -111,15 +98,6 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
               <div><Icon onClick={(e) => handleStarClick(e, indexes[4])} style={{fontSize: '1rem'}} value={indexes[4]} style={{fontSize: '1rem'}} name={emptyStar[4]} /></div>
             </span>
             </div>
-            {/* <div>
-              <input
-                type="text"
-                name="ratings"
-                value={review.ratings}
-                placeholder="Enter your rating"
-                onChange={handleChange}
-              />
-            </div> */}
          </label>
       <p className={`${messageClass}`}style={{color: 'green', fontSize: '1rem', paddingLeft: '10px'}}>Your review was submitted! <Icon name='check' /></p>
       <button className='button-style' type="submit"

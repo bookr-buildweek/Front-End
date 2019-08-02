@@ -6,7 +6,6 @@ import Banner from './components/header/Banner';
 import BookList from './components/main/BookList';
 import UserPage from './components/user/UserPage';
 import BookPage from './components/main/BookPage';
-import AddReview from './components/main/AddReview';
 import Filter from './components/main/Filter';
 import User from './components/user/User';
 import { UserContext } from './components/contexts/UserContext';
@@ -19,8 +18,10 @@ export default function Home() {
         axiosWithAuth()
         .get(`https://bookr-bw.herokuapp.com/api/users/${id}`)
         .then(res => {
-        console.log(res.data);
-        setUser(res.data)
+            setUser(res.data)
+        })
+        .catch(error => {
+            console.log('User .get', error)
         })
     }, [id])
     return (
@@ -35,7 +36,7 @@ export default function Home() {
                     <Route path='/mybooks' component={UserPage} />
                     <Route path='/:id/addreview' exact render={props => 
                         <div>
-                        <AddReview {...props} />
+                        {/* <AddReview {...props} /> */}
                         </div>
                     }/>
                     <Route path='/books/:category' render={props => 
