@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Tab, Menu, Icon } from 'semantic-ui-react'
 import { NavLink } from "react-router-dom";
 import Logo from '../../assets/BOOKR_LOGO.png';
 import User from '../../assets/AVATAR.png';

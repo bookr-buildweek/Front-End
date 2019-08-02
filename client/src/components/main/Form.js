@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, Item, Card, Icon } from 'semantic-ui-react';
-import styled from 'styled-components';
+import { Icon } from 'semantic-ui-react';
 import axiosWithAuth from '../../axiosWithAuth';
 
 function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formClass, setFormClass, messageClass, setMessageClass }) {
@@ -13,6 +12,7 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
                                               'star outline', 'star outline', 'star outline']);
   const [star, setStar] = useState('star');
   const indexes = [0, 1, 2, 3, 4];
+  const [errorMessage, setErrorMessage] = useState('hidden');
 
   useEffect(() => {
     const reviewID = JSON.parse(localStorage.getItem('reviewer'));
@@ -27,7 +27,6 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
     });
   
   }, [bookReview])
-
 
 
   function handleChange(e) {
@@ -50,9 +49,18 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
           setTimeout(() => {
             setMessageClass('hidden');
           }, 3000)
+          setReview({reviewer: '', ratings: '', review: ''});
+          setEmptyStar(['star outline', 'star outline', 
+          'star outline', 'star outline', 'star outline']);
         })
         .catch(err => {
           console.log(err)
+          setFormClass('hidden');
+          setErrorMessage('visible');
+          setTimeout(() => {
+            setErrorMessage('hidden');
+          }, 1000)
+          setButtonClass('visible');
         });
         console.log('REVIEW', review)
     };
@@ -100,6 +108,7 @@ function Form({ id, setSubmitted, submitted, buttonClass, setButtonClass, formCl
             </div>
         </label>
       <p className={`${messageClass}`}style={{color: 'green', fontSize: '1rem', paddingLeft: '10px'}}>Your review was submitted! <Icon name='check' /></p>
+      <p className={`${errorMessage}`}style={{color: 'red', fontSize: '1rem', paddingLeft: '10px'}}>Must fill out form or form was already submitted.</p>
       <button className='button-style' type="submit"
               style={{background: '#BF9018', marginLeft: '8px'}}>Add A Review</button>
   </form>

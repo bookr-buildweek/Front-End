@@ -1,11 +1,8 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 function UserBooks(props) {
     const {book} = props;
-   
-    console.log(book);
 
     const Wrapper = styled.div`
         display: flex;
@@ -23,6 +20,7 @@ function UserBooks(props) {
         color: #332706;
         font-size: 1.5rem;
         line-height: 40px;
+        width: 400px;
     `
     const P = styled.p`
         font-family: Roboto, sans serif;

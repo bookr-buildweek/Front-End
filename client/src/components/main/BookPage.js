@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axiosWithAuth from '../../axiosWithAuth';
 import { Button, Item, Card, Icon } from 'semantic-ui-react';
 import styled from 'styled-components';
@@ -109,7 +108,7 @@ function BookPage({ history, match }) {
         <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'center', width: '60%', margin: '0 auto'}}>
           <Wrap>
             <div style={{padding: '40px 20px 0 0', height: '600px'}}>
-              <img style={{ objectFit: 'fill', maxWidth: '100%', maxHeight: '100%'}} size='small' src={displayBook.url} alt="book"/>
+              <img style={{width: '300px'}} size='small' src={displayBook.url} alt="book"/>
             </div>
             <Item.Content style={{display: 'flex', flexDirection: 'column', justifyItems: 'left', padding: '40px 0 0 0', width: '500px', height: '600px'}}>
               <Item.Header><h2 style={{fontSize: '1.5rem'}}>{displayBook.title}</h2></Item.Header>
