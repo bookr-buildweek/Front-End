@@ -29,7 +29,7 @@ function Review({ review }) {
             <img style={{width: '100px'}} src={stars[review.ratings - 1]} alt="star"/>
           </div>
       </div>
-      <p style={{marginTop: '10px'}}>{review.review}</p>
+      <p style={{marginTop: '10px', fontSize: '1rem'}}>{review.review}</p>
     </div>
   )
 }

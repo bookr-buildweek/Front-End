@@ -23,16 +23,6 @@ const FilterBox = styled.div`
   padding: 20px;
 `
 
-// const Box = styled.div`
-//   display: 'flex';
-//   align-items: 'center'; 
-//   border: '1px solid rgba(191, 175, 134, 0.3)'; 
-//   padding: '10px'; 
-//   width: '300px'; 
-//   margin-bottom: '10px'; 
-//   background: '#FFF8E6';
-// `
-
 const Div = styled.div`
     @media (max-width: 768px) {
         flex-direction: column;
